@@ -1,0 +1,26 @@
+<section class="login-block">
+  <app-login
+    (setLogin)="setConnexion($event)"
+    *ngIf="!authInfo.isLogged"
+  ></app-login>
+
+  <app-nav-bar
+    *ngIf="authInfo.isLogged"
+    (setStep)="setStep($event)"
+  ></app-nav-bar>
+
+  <div class="body" *ngIf="authInfo.isLogged && step === 1">
+    <app-category (setCategory)="setCategory($event)"></app-category>
+    <app-movies-list
+      (setMovieToDisplay)="setMovieToDisplay($event)"
+      [category]="category"
+    ></app-movies-list>
+  </div>
+
+  <app-movie-details
+    *ngIf="step == 2"
+    [movie]="movieToDisplay"
+  ></app-movie-details>
+
+  <app-profil *ngIf="step == 0" [uid]="authInfo.uid"></app-profil>
+</section>

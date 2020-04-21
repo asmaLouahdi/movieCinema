@@ -1,0 +1,190 @@
+.contain {
+  border-bottom: 1px solid rgba(16.67%, 18.63%, 25.88%, 1);
+  background-position: right -200px top;
+  height: 700px;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.movie-body {
+  background-image: linear-gradient(
+    to right,
+    rgba(12.94%, 14.9%, 22.75%, 1) 150px,
+    rgba(20.39%, 22.35%, 29.02%, 0.84) 100%
+  );
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding: 20px;
+}
+.left {
+  min-width: 300px;
+  float: left;
+  display: inline-block;
+  margin-right: 25px;
+}
+.right {
+  width: 60%;
+  display: inline-block;
+  margin-top: 40px;
+}
+.movie-section {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+}
+.poster {
+  margin: auto;
+  display: block;
+}
+.section {
+  position: absolute;
+}
+a {
+  text-decoration: none;
+}
+ol.people {
+  list-style-type: none;
+  list-style-position: inside;
+  margin: 0;
+  margin-top: 0px;
+  padding: 0;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.3em;
+}
+p {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+.profile {
+  margin-right: 20px;
+}
+.person {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.year {
+  opacity: 0.8;
+  font-weight: 400;
+}
+div.title h2 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 2.2rem;
+}
+div.facts {
+  display: flex;
+}
+span.certification {
+  border: 1px solid rgba(100%, 100%, 100%, 0.6);
+  color: rgba(100%, 100%, 100%, 0.6);
+}
+span.certification + span {
+  padding-left: 0;
+}
+div.facts span + span {
+  padding-left: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+div.title {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+}
+h3.tagline {
+  margin-bottom: 0;
+  font-size: 1em;
+  font-weight: lighter;
+  font-style: italic;
+  opacity: 0.7;
+}
+h3.tagline + h3 {
+  margin-top: 10px;
+}
+section.header h3 {
+  width: 100%;
+  margin: 0 0 8px 0;
+  margin-top: 0px;
+}
+span.release_date {
+  opacity: 0.8;
+  font-weight: 400;
+}
+div.consensus {
+  margin-right: 10px;
+}
+div.outer_ring {
+  display: inline-block;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: #081c22;
+}
+.user_score_chart {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.percent {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background: turquoise;
+}
+.percent .icon {
+  color: #fff;
+  border-radius: 50%;
+  height: 80%;
+  font-size: 20px;
+  font-weight: bold;
+  width: 80%;
+  text-align: center;
+  align-items: center;
+  background: black;
+  padding: 8px;
+}
+li.chart {
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 68px;
+  margin-bottom: 20px;
+}
+li.chart div.text {
+  font-weight: 500;
+  margin-left: 6px;
+  white-space: pre-line;
+}
+.commander {
+  float: left;
+  display: block;
+  width: 300px;
+  background: #fed136;
+  color: #fff;
+  font-weight: 500;
+}
+div.left img {
+  display: block;
+}
+.btn {
+  border-radius: 0em !important;
+}

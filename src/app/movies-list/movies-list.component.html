@@ -1,0 +1,26 @@
+<div class="basic-container">
+  <div class="example-card" *ngFor="let movie of moviesList">
+    <mat-card>
+      <img
+        mat-card-image
+        src="https://image.tmdb.org/t/p/w220_and_h330_face{{
+          movie.poster_path
+        }}"
+        alt="Photo of a Shiba Inu"
+        data-loaded="true"
+        (click)="displayMovie(movie.id)"
+      />
+
+      <mat-card-content>
+        <a class="title" href="">
+          <h6 class="content">
+            {{ movie.title }}
+          </h6>
+        </a>
+        <p>{{ movie.release_date | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button class="btn more" (click)="afficherPlus()">Voir plus</button>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark top" id="banner">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#"><span>Menu</span>Cinema</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#collapsibleNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Plats</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goToStep(1)">Films</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Commandes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goToStep(0)">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goToStep(5)">Deconnecter</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

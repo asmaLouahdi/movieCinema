@@ -1,0 +1,79 @@
+<div
+  [ngStyle]="{ 'background-image': 'url(' + background + ')' }"
+  class="contain"
+>
+  <div class="movie-body">
+    <div class="movie-section">
+      <section class="section">
+        <div class="left">
+          <img src="{{ image }}" data-loaded="true" />
+          <button class="btn commander">Commander</button>
+        </div>
+        <div class="right">
+          <section class="header poster">
+            <div class="title ott_true" dir="auto">
+              <h2 class="8">
+                <a>{{ movie.original_title }}</a>
+                <span class="tag release_date">(2019)</span>
+              </h2>
+
+              <div class="facts">
+                <span class="certification">
+                  PG-13
+                </span>
+
+                <span class="release">
+                  {{ movie.release_date }} ({{
+                    movie.original_language | uppercase
+                  }})
+                </span>
+
+                <span class="genres">
+                  <a *ngFor="let type of movie.genres"
+                    >{{ type.name }},&nbsp;</a
+                  >
+                </span>
+
+                <span class="runtime"> {{ movie.runtime }} mn </span>
+              </div>
+            </div>
+            <li class="chart">
+              <div class="consensus no_hover">
+                <div class="outer_ring">
+                  <div
+                    class="user_score_chart"
+                    data-percent="59.669999999999995"
+                    data-track-color="#423d0f"
+                    data-bar-color="#d2d531"
+                  >
+                    <div class="percent">
+                      <span class="icon icon-r60"
+                        >{{ movie.vote_average * 10 }}%</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text">
+                User <br />
+                Score
+              </div>
+            </li>
+            <div class="header_info">
+              <h3 class="tagline" dir="auto">
+                {{ movie.tagline }}
+              </h3>
+
+              <h2 dir="auto">Overview</h2>
+              <div class="overview" dir="auto">
+                <p>
+                  {{ movie.overview }}
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+
+.body {
+  background-color: white;
+  width: 100%;
+  padding: 20px;
+  padding-top: 40px;
+  display: inline-block;
+}
