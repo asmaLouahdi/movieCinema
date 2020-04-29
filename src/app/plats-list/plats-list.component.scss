@@ -1,0 +1,70 @@
+.example-card {
+  max-width: 23%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 5px;
+  display: inline-table;
+  border-radius: 8px;
+}
+.selectedCard {
+  max-width: 23%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  padding: 5px;
+  display: inline-table;
+  border-radius: 8px;
+  background-color: yellowgreen;
+}
+.basic-container {
+  padding: 10px;
+  width: 80%;
+  float: right;
+}
+.content {
+  text-align: left;
+}
+p {
+  color: rgba(0, 0, 0, 0.6);
+}
+h6 {
+  margin-bottom: 0 !important;
+}
+.mat-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  height: 450px;
+}
+.title {
+  text-decoration: none;
+  color: black;
+}
+.more {
+  border: none;
+  background-color: white;
+  float: right;
+}
+h6 > a {
+  float: right;
+}
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}
+.mat-expansion-panel-header {
+  padding: 0px 15px !important;
+}
+
+.ing-card {
+  position: relative;
+  z-index: 1;
+  background: white;
+}
+
+.btnRegister {
+  background: #fed136;
+  color: #fff;
+  width: 120px;
+  cursor: pointer;
+  margin-left: 2.5%;
+  display: block;
+}

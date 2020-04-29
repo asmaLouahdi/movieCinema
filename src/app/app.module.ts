@@ -64,6 +64,8 @@ import {
 import { HistoriqueComponent } from "./historique/historique.component";
 import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { PlatsListComponent } from "./plats-list/plats-list.component";
+import { CategoryPlatsComponent } from "./category-plats/category-plats.component";
+import { AddressComponent } from "./address/address.component";
 
 /**
  * NgModule that includes all Material modules that are required to serve
@@ -145,6 +147,8 @@ export class MaterialModule {}
     HistoriqueComponent,
     MovieDetailsComponent,
     PlatsListComponent,
+    CategoryPlatsComponent,
+    AddressComponent,
   ],
   bootstrap: [AppComponent],
   providers: [HttpClient], //TmdbService, HttpClient

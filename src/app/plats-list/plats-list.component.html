@@ -1,1 +1,47 @@
-<p>plats-list works!</p>
+<div class="basic-container">
+  <button class="btn btnRegister" (click)="setPlats()">
+    Commander
+  </button>
+  <div
+    class="example-card"
+    *ngFor="let plat of platsList"
+    [class.selectedCard]="isSelected(plat.id)"
+  >
+    <mat-card *ngIf="plat.type == type">
+      <img mat-card-image src="{{ plat.photo }}" data-loaded="true" />
+
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Quantité</mat-label>
+          <select
+            matNativeControl
+            (change)="setQuantite(selectField.value, plat.id)"
+            #selectField
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </mat-form-field>
+        <a class="title" href="">
+          <h6 class="content">
+            {{ plat.title }}
+            <a>{{ plat.prix }}£</a>
+          </h6>
+        </a>
+
+        <p>{{ plat.type }}</p>
+        <mat-expansion-panel class="ing-card">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Ingredients
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p *ngFor="let ingredient of plat.ingredients">{{ ingredient }}</p>
+        </mat-expansion-panel>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

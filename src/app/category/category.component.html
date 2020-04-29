@@ -14,10 +14,10 @@
             <input
               class="form-check-input"
               type="radio"
-              name="exampleRadio"
+              name="example"
               (click)="onCategoryChange('popular')"
               value=""
-              checked
+              [checked]="category == 'popular'"
             />
             <span class="form-check-label">
               Populaires
@@ -27,8 +27,9 @@
             <input
               class="form-check-input"
               type="radio"
-              name="exampleRadio"
+              name="example"
               (click)="onCategoryChange('top_rated')"
+              [checked]="category == 'top_rated'"
               value=""
             />
             <span class="form-check-label">
@@ -39,8 +40,9 @@
             <input
               class="form-check-input"
               type="radio"
-              name="exampleRadio"
+              name="example"
               (click)="onCategoryChange('now_playing')"
+              [checked]="category == 'now_playing'"
               value=""
             />
             <span class="form-check-label">
@@ -63,6 +65,21 @@
               type="radio"
               name="exampleRadio"
               value=""
+              (click)="onLanguageChange('all')"
+              [checked]="language == 'all'"
+            />
+            <span class="form-check-label">
+              Tout
+            </span>
+          </label>
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              value=""
+              (click)="onLanguageChange('fr')"
+              [checked]="language == 'fr'"
             />
             <span class="form-check-label">
               Français
@@ -74,6 +91,8 @@
               type="radio"
               name="exampleRadio"
               value=""
+              (click)="onLanguageChange('en')"
+              [checked]="language == 'en'"
             />
             <span class="form-check-label">
               Anglais
@@ -84,10 +103,25 @@
               class="form-check-input"
               type="radio"
               name="exampleRadio"
+              (click)="onLanguageChange('it')"
+              [checked]="language == 'it'"
               value=""
             />
             <span class="form-check-label">
-              Espagnol
+              Italien
+            </span>
+          </label>
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              (click)="onLanguageChange('ja')"
+              [checked]="language == 'ja'"
+              value=""
+            />
+            <span class="form-check-label">
+              Japonais
             </span>
           </label>
         </div>

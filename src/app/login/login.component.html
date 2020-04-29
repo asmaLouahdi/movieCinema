@@ -8,12 +8,12 @@
             <p>
               <a
                 class="btn btn-primary social-login-btn social-facebook"
-                href="/auth/facebook"
+                (click)="faceBookAuth()"
                 ><i class="fa fa-facebook"></i
               ></a>
               <a
                 class="btn btn-primary social-login-btn social-twitter"
-                href="/auth/twitter"
+                (click)="twitterAuth()"
                 ><i class="fa fa-twitter"></i
               ></a>
             </p>
@@ -51,11 +51,7 @@
           </div>
 
           <div class="form-check">
-            <button
-              type="submit"
-              class="btn btn-login float-right"
-              (click)="SignIn()"
-            >
+            <button type="submit" class="btn btn-login float-right">
               Se connecter
             </button>
           </div>

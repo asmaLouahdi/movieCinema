@@ -1,1 +1,62 @@
-<p>historique works!</p>
+<div class="basic-container" *ngFor="let commande of commandesList">
+  <h6 class="date">{{ commande.date }}</h6>
+  <h4 class="prix">{{ commande.prix }}£</h4>
+  <h5>Plats</h5>
+  <div class="example-card" *ngFor="let platId of commande.idPlats">
+    <mat-card>
+      <img
+        mat-card-image
+        class="images"
+        [src]="currentPlatPhoto(platId)"
+        data-loaded="true"
+      />
+
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Quantité</mat-label>
+          <select matNativeControl #selectField disabled="true">
+            <option value="1" [selected]="getQuantite(commande.id, platId, 1)"
+              >1</option
+            >
+            <option value="2" [selected]="getQuantite(commande.id, platId, 2)"
+              >2</option
+            >
+            <option value="3" [selected]="getQuantite(commande.id, platId, 3)"
+              >3</option
+            >
+            <option value="4" [selected]="getQuantite(commande.id, platId, 4)"
+              >4</option
+            >
+          </select>
+        </mat-form-field>
+        <a class="title" href="">
+          <h6 class="content">
+            {{ currentPlatTitle(platId) }}
+            <a>{{ currentPlatPrix(platId) }}£</a>
+          </h6>
+        </a>
+
+        <p>{{ currentPlatType(platId) }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <h5>films</h5>
+  <div class="example-card" *ngFor="let movieId of commande.idFilms">
+    <mat-card>
+      <img
+        mat-card-image
+        [src]="currentMoviePhoto(movieId)"
+        data-loaded="true"
+      />
+
+      <mat-card-content>
+        <a class="title" href="">
+          <h6 class="content">
+            {{ currentMovieTitle(movieId) }}
+          </h6>
+        </a>
+        <p>{{ currentMovieDate(movieId) | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -7,20 +7,42 @@
   <app-nav-bar
     *ngIf="authInfo.isLogged"
     (setStep)="setStep($event)"
+    (setMode)="setMode($event)"
   ></app-nav-bar>
+  <app-historique *ngIf="step === 4"></app-historique>
 
-  <div class="body" *ngIf="authInfo.isLogged && step === 1">
-    <app-category (setCategory)="setCategory($event)"></app-category>
+  <div class="body" *ngIf="step === 2">
+    <app-category
+      (setCategory)="setCategory($event)"
+      (setLanguage)="setLanguage($event)"
+      [category]="category"
+      [language]="language"
+    ></app-category>
     <app-movies-list
       (setMovieToDisplay)="setMovieToDisplay($event)"
       [category]="category"
+      [language]="language"
     ></app-movies-list>
   </div>
 
   <app-movie-details
-    *ngIf="step == 2"
+    *ngIf="step === 3"
     [movie]="movieToDisplay"
+    (setMoviesToOrder)="setMoviesToOrder($event)"
   ></app-movie-details>
 
-  <app-profil *ngIf="step == 0" [uid]="authInfo.uid"></app-profil>
+  <div class="body" *ngIf="authInfo.isLogged && step === 1">
+    <app-category-plats
+      (setPlatType)="setPlatType($event)"
+    ></app-category-plats>
+    <app-plats-list
+      (setPlatsToOrder)="setPlatsToOrder($event)"
+      [type]="platType"
+    ></app-plats-list>
+  </div>
+  <div class="body" *ngIf="step === 0">
+    <app-address (validateCommande)="validateCommande($event)"></app-address>
+  </div>
+
+  <app-profil *ngIf="step == 5" [uid]="authInfo.uid"></app-profil>
 </section>

@@ -1,3 +1,4 @@
+import { MoviesService } from "./../service/movies.service";
 import { MovieResponse } from "./../tmdb-data/Movie";
 import {
   Component,
@@ -7,7 +8,6 @@ import {
   Input,
   SimpleChanges,
 } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 @Component({
   selector: "app-movies-list",
   templateUrl: "./movies-list.component.html",
@@ -16,43 +16,95 @@ import { HttpClient } from "@angular/common/http";
 export class MoviesListComponent implements OnInit {
   @Output() setMovieToDisplay: EventEmitter<Number> = new EventEmitter();
   @Input() category: string;
+  @Input() language: string;
 
   moviesList: MovieResponse[] = [];
   page: number = 1;
-  private _movieAPIUrl: string;
+  allMovies: MovieResponse[];
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(public moviesService: MoviesService) {}
 
   ngOnInit() {
-    this._movieAPIUrl =
-      "https://api.themoviedb.org/3/movie/" +
-      this.category +
-      "?api_key=110b948bfb9c7fb9f82272cb5294ad76&language=en-US&page=";
-    this.getMovies(this._movieAPIUrl + this.page);
-  }
-  ngOnChanges(changements: SimpleChanges) {
-    this._movieAPIUrl =
-      "https://api.themoviedb.org/3/movie/" +
-      changements.category.currentValue +
-      "?api_key=110b948bfb9c7fb9f82272cb5294ad76&language=en-US&page=";
-    this.getNewCatMovies(this._movieAPIUrl + this.page);
+    this.getMovies();
   }
 
-  getMovies(url) {
-    this._httpClient.get(url).subscribe((response: any) => {
-      this.moviesList = this.moviesList.concat(response.results);
-    });
+  ngOnChanges(changements: SimpleChanges) {
+    if (changements.category) {
+      this.getNewCatMovies(changements.category.currentValue);
+    } else {
+      if (changements.language) {
+        if (changements.language.currentValue == "all") {
+          this.moviesList = this.allMovies;
+        } else {
+          this.moviesList = this.moviesList.filter((movie) => {
+            return movie.original_language == changements.language.currentValue;
+          });
+        }
+      }
+    }
   }
-  getNewCatMovies(url) {
-    this._httpClient.get(url).subscribe((response: any) => {
-      this.moviesList = response.results;
-    });
+
+  getMovies() {
+    switch (this.category) {
+      case "popular": {
+        this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
+          this.moviesList = this.moviesList.concat(movies.results);
+          this.allMovies = this.moviesList;
+        });
+        break;
+      }
+      case "top_rated":
+        this.moviesService.getTopRatedMovies(this.page).subscribe((movies) => {
+          this.moviesList = this.moviesList.concat(movies.results);
+          this.allMovies = this.moviesList;
+        });
+        break;
+      case "now_playing": {
+        this.moviesService
+          .getNowPlayingMovies(this.page)
+          .subscribe((movies) => {
+            this.moviesList = this.moviesList.concat(movies.results);
+            this.allMovies = this.moviesList;
+          });
+        break;
+      }
+      default:
+        break;
+    }
+  }
+  getNewCatMovies(newCategory: string) {
+    switch (newCategory) {
+      case "popular": {
+        this.moviesService.getPopularMovies(this.page).subscribe((movies) => {
+          this.moviesList = movies.results;
+          this.allMovies = this.moviesList;
+        });
+        break;
+      }
+      case "top_rated":
+        this.moviesService.getTopRatedMovies(this.page).subscribe((movies) => {
+          this.moviesList = movies.results;
+          this.allMovies = this.moviesList;
+        });
+        break;
+      case "now_playing": {
+        this.moviesService
+          .getNowPlayingMovies(this.page)
+          .subscribe((movies) => {
+            this.moviesList = movies.results;
+            this.allMovies = this.moviesList;
+          });
+        break;
+      }
+      default:
+        break;
+    }
   }
   displayMovie(movie_id: Number) {
     this.setMovieToDisplay.emit(movie_id);
   }
   afficherPlus() {
     this.page++;
-    this.getMovies(this._movieAPIUrl + this.page);
+    this.getMovies();
   }
 }

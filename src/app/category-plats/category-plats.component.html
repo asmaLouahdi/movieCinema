@@ -1,0 +1,67 @@
+<div class="row">
+  <h2 align="left">Filtres</h2>
+
+  <div class="card">
+    <!-- card-group-item.// -->
+
+    <article class="card-group-item">
+      <header class="card-header">
+        <h6 class="title">Type</h6>
+      </header>
+      <div class="filter-content">
+        <div class="card-body">
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              (click)="onCategoryChange('Entree')"
+              value=""
+            />
+            <span class="form-check-label">
+              Entrées
+            </span>
+          </label>
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              (click)="onCategoryChange('Plat')"
+              value=""
+            />
+            <span class="form-check-label">
+              Plat
+            </span>
+          </label>
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              (click)="onCategoryChange('Dessert')"
+              value=""
+            />
+            <span class="form-check-label">
+              Dessert
+            </span>
+          </label>
+          <label class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="exampleRadio"
+              (click)="onCategoryChange('Boisson')"
+              value=""
+            />
+            <span class="form-check-label">
+              Boisson
+            </span>
+          </label>
+        </div>
+        <!-- card-body.// -->
+      </div>
+    </article>
+  </div>
+  <!-- card.// -->
+</div>

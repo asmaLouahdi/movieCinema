@@ -1,12 +1,12 @@
-import { AuthInfo } from "./../services/AuthInfo";
+import { AuthInfo } from "../modele/AuthInfo";
 import { HttpClient, HttpResponse, HttpParams } from "@angular/common/http";
 import { Component, OnInit, NgZone, Output, EventEmitter } from "@angular/core";
-import { User } from "../services/user";
+import { User } from "../modele/user";
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
-import * as firebase from "firebase";
+import { AuthenticationService } from "../service/authentication.service";
 
 @Component({
   selector: "app-login",
@@ -19,10 +19,8 @@ export class LoginComponent implements OnInit {
   @Output() setLogin: EventEmitter<AuthInfo> = new EventEmitter();
 
   constructor(
-    public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public ngZone: NgZone, // NgZone service to remove outside scope warning
-    public router: Router,
+    public authenticationService: AuthenticationService,
     private httpClient: HttpClient
   ) {
     afAuth.user.subscribe(async (u: User) => {
@@ -53,20 +51,33 @@ export class LoginComponent implements OnInit {
       .toPromise();
   }
   googleAuth() {
-    return this.AuthLogin(new auth.GoogleAuthProvider());
+    this.authenticationService
+      .AuthLogin(new auth.GoogleAuthProvider())
+      .then((res) => {
+        this.setLogin.emit({ isLogged: true, uid: res.user.uid });
+      });
   }
   faceBookAuth() {
-    return this.AuthLogin(new auth.FacebookAuthProvider());
+    this.authenticationService
+      .AuthLogin(new auth.FacebookAuthProvider())
+      .then((res) => {
+        this.setLogin.emit({ isLogged: true, uid: res.user.uid });
+      });
   }
   twitterAuth() {
-    return this.AuthLogin(new auth.TwitterAuthProvider());
+    this.authenticationService
+      .AuthLogin(new auth.TwitterAuthProvider())
+      .then((res) => {
+        this.setLogin.emit({ isLogged: true, uid: res.user.uid });
+      });
   }
 
-  AuthLogin(provider) {
+  /* AuthLogin(provider) {
     return firebase
       .auth()
       .signInWithPopup(provider)
       .then((res) => {
+        console.log(res);
         this.setLogin.emit({ isLogged: true, uid: res.user.uid });
       });
   }
@@ -83,6 +94,6 @@ export class LoginComponent implements OnInit {
         console.log("Something is wrong:", err.message);
       });
   }
-
+*/
   ngOnInit() {}
 }

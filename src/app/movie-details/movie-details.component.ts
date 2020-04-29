@@ -1,5 +1,5 @@
 import { MovieResponse } from "./../tmdb-data/Movie";
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-movie-details",
@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class MovieDetailsComponent implements OnInit {
   @Input() movie: MovieResponse;
+  @Output() setMoviesToOrder: EventEmitter<string> = new EventEmitter();
+
   image: String; //"https://image.tmdb.org/t/p/w220_and_h330_face" + this.movie.poster_path;
   background: string;
   constructor() {}
@@ -19,5 +21,8 @@ export class MovieDetailsComponent implements OnInit {
     this.background =
       "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces" +
       this.movie.poster_path;
+  }
+  sendCommande() {
+    this.setMoviesToOrder.emit(this.movie.id + "");
   }
 }
