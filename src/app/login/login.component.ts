@@ -27,28 +27,13 @@ export class LoginComponent implements OnInit {
       console.log("L’utilisateur Firebasse est ", u);
       // On contacte le serveur métier pour l'informer si un nouvel utilisateur existe :
       if (u !== null) {
-        const reponseServeur = await this.POST("/api/authentification", {
-          userId: u.uid,
-        }).catch((err) => {
-          console.log(err);
-        });
-        console.log("Le serveur répond", reponseServeur);
+        const reponseServeur = await this.authenticationService
+          .checkAuthentification(u)
+          .subscribe((response) => {
+            console.log(response);
+          });
       }
     });
-  }
-
-  POST(
-    url: string,
-    params: { [key: string]: string }
-  ): Promise<HttpResponse<string>> {
-    const P = new HttpParams({ fromObject: params });
-    return this.httpClient
-      .post(url, P, {
-        observe: "response",
-        responseType: "text",
-        headers: { "content-type": "application/x-www-form-urlencoded" },
-      })
-      .toPromise();
   }
   googleAuth() {
     this.authenticationService
@@ -71,29 +56,5 @@ export class LoginComponent implements OnInit {
         this.setLogin.emit({ isLogged: true, uid: res.user.uid });
       });
   }
-
-  /* AuthLogin(provider) {
-    return firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((res) => {
-        console.log(res);
-        this.setLogin.emit({ isLogged: true, uid: res.user.uid });
-      });
-  }
-
-  SignIn() {
-    console.log(this.password);
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(this.email, this.password)
-      .then((res) => {
-        this.setLogin.emit({ isLogged: true, uid: res.user.uid });
-      })
-      .catch((err) => {
-        console.log("Something is wrong:", err.message);
-      });
-  }
-*/
   ngOnInit() {}
 }

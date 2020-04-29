@@ -3,15 +3,19 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 
 import * as firebase from "firebase";
-import { AppUser } from "../modele/user";
+import { AppUser, User } from "../modele/user";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthenticationService {
-  url = "api/user";
+  url = "/api/user";
 
   constructor(private http: HttpClient) {}
+
+  checkAuthentification(user: User): Observable<User> {
+    return this.http.post<AppUser>("/api/authentification", { user: user });
+  }
   AuthLogin(provider) {
     return firebase
       .auth()
