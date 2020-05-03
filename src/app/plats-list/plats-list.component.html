@@ -2,6 +2,7 @@
   <button class="btn btnRegister" (click)="setPlats()">
     Commander
   </button>
+  <label>{{ prix }}</label>
   <div
     class="example-card"
     *ngFor="let plat of platsList"
@@ -15,7 +16,7 @@
           <mat-label>Quantité</mat-label>
           <select
             matNativeControl
-            (change)="setQuantite(selectField.value, plat.id)"
+            (change)="setQuantite(selectField.value, plat.id, plat.prix)"
             #selectField
           >
             <option value="0">0</option>

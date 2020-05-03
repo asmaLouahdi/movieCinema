@@ -9,6 +9,7 @@
     (setStep)="setStep($event)"
     (setMode)="setMode($event)"
   ></app-nav-bar>
+  <app-facture></app-facture>
   <app-historique *ngIf="step === 4"></app-historique>
 
   <div class="body" *ngIf="step === 2">
@@ -43,6 +44,6 @@
   <div class="body" *ngIf="step === 0">
     <app-address (validateCommande)="validateCommande($event)"></app-address>
   </div>
-
+  <app-facture [facture]="facture"></app-facture>
   <app-profil *ngIf="step == 5" [uid]="authInfo.uid"></app-profil>
 </section>

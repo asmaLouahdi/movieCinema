@@ -7,9 +7,10 @@ import { Plat } from "../modele/Plat";
   styleUrls: ["./plats-list.component.scss"],
 })
 export class PlatsListComponent implements OnInit {
-  @Output() setPlatsToOrder: EventEmitter<number[]> = new EventEmitter();
+  @Output() setPlatsToOrder: EventEmitter<object> = new EventEmitter();
   @Input() type: string;
   platsToOrder: number[] = [];
+  prix: number = 0;
 
   platsList: Plat[] = [
     {
@@ -82,17 +83,28 @@ export class PlatsListComponent implements OnInit {
     });*/
   }
   setPlats() {
-    this.setPlatsToOrder.emit(this.platsToOrder);
+    this.setPlatsToOrder.emit({ plats: this.platsToOrder, prix: this.prix });
   }
-  setQuantite(quantite: number, platId: number) {
+  setQuantite(quantite: number, platId: number, platPrix: number) {
     if (quantite == 0) {
+      const lastQuant = this.platsToOrder.filter((idPlat) => {
+        return idPlat == platId;
+      }).length;
+      this.prix = this.prix - lastQuant * platPrix;
       this.platsToOrder = this.platsToOrder.filter((idPlat) => {
         return idPlat !== platId;
       });
     } else {
+      const lastQuant = this.platsToOrder.filter((idPlat) => {
+        return idPlat == platId;
+      }).length;
+      this.platsToOrder = this.platsToOrder.filter((idPlat) => {
+        return idPlat !== platId;
+      });
       for (var _i = 0; _i < quantite; _i++) {
         this.platsToOrder.push(platId);
       }
+      this.prix = this.prix - lastQuant * platPrix + platPrix * quantite;
     }
   }
   isSelected(id: number) {

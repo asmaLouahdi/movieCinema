@@ -1,3 +1,4 @@
+import { Facture } from "./../modele/Facture";
 import { Commande } from "../modele/Commande";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
@@ -18,8 +19,8 @@ export class CommandesService {
     });
   }
 
-  createCommande(commande: Commande): Observable<Commande> {
-    return this.http.post<Commande>(this.url, { commande: commande });
+  createCommande(commande: Commande): Observable<Facture> {
+    return this.http.post<Facture>(this.url, { commande: commande });
   }
 
   getCommandes(): Observable<Commande[]> {

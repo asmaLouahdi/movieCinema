@@ -1,3 +1,4 @@
+import { Facture } from "./../modele/Facture";
 import { CommandesService } from "./../service/commandes.service";
 import { Commande } from "../modele/Commande";
 import { AuthInfo } from "../modele/AuthInfo";
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   category: string = "popular";
   language: string = "all";
   platType: string = "Dessert";
+  facture: Facture;
 
   authInfo: AuthInfo = {
     isLogged: false,
@@ -25,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   platsToOrder: string[] = [];
   movieToOrder: string[] = [];
-
+  prix: number = 0;
   constructor(
     public moviesService: MoviesService,
     public commandesService: CommandesService
@@ -37,8 +39,10 @@ export class HomeComponent implements OnInit {
       this.step = 3;
     });
   }
-  setPlatsToOrder(platsId: string[]) {
-    this.platsToOrder = platsId;
+  setPlatsToOrder(data) {
+    console.log(data);
+    this.platsToOrder = data.plats;
+    this.prix = data.prix;
     if (this.mode == "plat") {
       this.step = 2;
     } else {
@@ -71,14 +75,17 @@ export class HomeComponent implements OnInit {
   validateCommande(address: string) {
     const commande: Commande = {
       idPlats: this.platsToOrder,
+      prix: this.prix,
+      date: new Date().toISOString().slice(0, 10),
       idFilms: this.movieToOrder,
       idClient: this.authInfo.uid,
       addresseLivraison: address,
     };
-
+    console.log(commande);
     return this.commandesService
       .createCommande(commande)
       .subscribe((commande) => {
+        this.facture = commande;
         this.movieToOrder = [];
         this.platsToOrder = [];
         console.log("added successfully");

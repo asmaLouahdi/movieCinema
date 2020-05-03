@@ -1,11 +1,9 @@
 import { AuthInfo } from "../modele/AuthInfo";
-import { HttpClient, HttpResponse, HttpParams } from "@angular/common/http";
 import { Component, OnInit, NgZone, Output, EventEmitter } from "@angular/core";
 import { User } from "../modele/user";
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { Router } from "@angular/router";
+
 import { AuthenticationService } from "../service/authentication.service";
 
 @Component({
@@ -20,18 +18,19 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public authenticationService: AuthenticationService,
-    private httpClient: HttpClient
+    public authenticationService: AuthenticationService
   ) {
     afAuth.user.subscribe(async (u: User) => {
       console.log("L’utilisateur Firebasse est ", u);
       // On contacte le serveur métier pour l'informer si un nouvel utilisateur existe :
       if (u !== null) {
+        this.setLogin.emit({ isLogged: true, uid: u.uid });
         const reponseServeur = await this.authenticationService
           .checkAuthentification(u)
           .subscribe((response) => {
             console.log(response);
           });
+        this.setLogin.emit({ isLogged: true, uid: u.uid });
       }
     });
   }
